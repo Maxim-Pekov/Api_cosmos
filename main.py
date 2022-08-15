@@ -1,6 +1,9 @@
 import pathlib
+from pprint import pprint
+
 import requests
 from urllib.request import urlretrieve
+from environs import Env
 
 url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
 directory_path = 'images'
@@ -27,3 +30,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+    env = Env()
+    env.read_env()
+    urll = 'https://api.nasa.gov/planetary/apod'
+    params = {
+        'api_key': env.str('NASA_TOKEN'),
+    }
+    resp = requests.get(urll, params=params)
+    pprint(resp.json()['hdurl'])
