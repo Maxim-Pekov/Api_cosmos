@@ -1,25 +1,28 @@
-import pathlib, requests
-
-from pprint import pprint
+import pathlib
+import requests
 from urllib.request import urlretrieve
 
-
 url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
-directory_path='images'
+directory_path = 'images'
 
 
-def download_images(url, directory_path):
-    name_photo = url.split("/")[-1]
+def download_images(url, directory_path, name_photo=None):
+    if name_photo is None:
+        name_photo = url.split("/")[-1]
     pathlib.Path(directory_path).mkdir(parents=True, exist_ok=True)
-    urlretrieve(url, f'{directory_path}/{name_photo}')
+    urlretrieve(url, f'{directory_path}/{name_photo}.jpeg')
+
+
+def get_photo_links(flight_id):
+    response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
+    spacex_photo_urls = response.json()['links']['flickr']['original']
+    return spacex_photo_urls
 
 
 def main():
-    response = requests.get('https://api.spacexdata.com/v5/launches/61e048ffbe8d8b66799018d1')
-    space_urls = response.json()['links']['flickr']['original']
-    for url in space_urls:
-        print(url)
-        download_images(url, directory_path)
+    spacex_photo_urls = get_photo_links('61e048ffbe8d8b66799018d1')
+    for number_url, url in enumerate(spacex_photo_urls):
+        download_images(url, directory_path, f'spacex_{number_url}')
 
 
 if __name__ == "__main__":
