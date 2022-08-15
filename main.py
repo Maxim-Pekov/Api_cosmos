@@ -13,14 +13,14 @@ def download_images(url, directory_path, name_photo=None):
     urlretrieve(url, f'{directory_path}/{name_photo}.jpeg')
 
 
-def get_photo_links(flight_id):
+def fetch_spacex_launch_by_id(flight_id):
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
     spacex_photo_urls = response.json()['links']['flickr']['original']
     return spacex_photo_urls
 
 
 def main():
-    spacex_photo_urls = get_photo_links('61e048ffbe8d8b66799018d1')
+    spacex_photo_urls = fetch_spacex_launch_by_id('61e048ffbe8d8b66799018d1')
     for number_url, url in enumerate(spacex_photo_urls):
         download_images(url, directory_path, f'spacex_{number_url}')
 
