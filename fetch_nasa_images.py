@@ -39,7 +39,6 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     images_count = args.images_count
-    # launch_id = '61e048ffbe8d8b66799018d1'
     nasa_photos = get_nasa_photos_content(images_count)
     save_images(nasa_photos, directory_path, 'nasa_')
 

@@ -2,6 +2,11 @@
 .idea/
 images
 images/
+m
+m/
+m.py
+m.py/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
