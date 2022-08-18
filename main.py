@@ -1,4 +1,6 @@
 import pathlib
+from pprint import pprint
+
 import requests
 
 from datetime import datetime
@@ -23,21 +25,21 @@ def save_images(contents, directory_path, name_photo):
             file.write(content[0])
 
 
-def get_spacex_photos_launch_by_id(flight_id):
-    """Возвращает список фотографий в байтах с их разрешением полученных с spacex используя flight_id"""
-
-    response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
-    response.raise_for_status()
-    spacex_photo_urls = response.json()['links']['flickr']['original']
-    spacex_photos = []
-    for spacex_photo_url in spacex_photo_urls:
-        response = requests.get(spacex_photo_url)
-        response.raise_for_status()
-        spacex_photo = []
-        spacex_photo.append(response.content)
-        spacex_photo.append(get_extension(spacex_photo_url))
-        spacex_photos.append(spacex_photo)
-    return spacex_photos
+# def get_spacex_photos_launch_by_id(flight_id):
+#     """Возвращает список фотографий в байтах с их разрешением полученных с spacex используя flight_id"""
+#
+#     response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
+#     response.raise_for_status()
+#     spacex_photo_urls = response.json()['links']['flickr']['original']
+#     spacex_photos = []
+#     for spacex_photo_url in spacex_photo_urls:
+#         response = requests.get(spacex_photo_url)
+#         response.raise_for_status()
+#         spacex_photo = []
+#         spacex_photo.append(response.content)
+#         spacex_photo.append(get_extension(spacex_photo_url))
+#         spacex_photos.append(spacex_photo)
+#     return spacex_photos
 
 
 def get_extension(url):
@@ -58,6 +60,7 @@ def get_nasa_photos_content(number_of_contents):
     response = requests.get(url, params=params)
     response.raise_for_status()
     info_photos = response.json()
+    pprint(info_photos)
     nasa_photos = []
     for info_photo in info_photos:
         nasa_photo_url = info_photo['hdurl']
@@ -103,17 +106,16 @@ def get_epic_photos():
     return nasa_epic_photos
 
 
-def main():
-    launch_id = '61e048ffbe8d8b66799018d1'
-    nasa_photo_urls = get_nasa_photos_content(5)
-    spacex_photos = get_spacex_photos_launch_by_id(launch_id)
-    nasa_epic_photos = get_epic_photos()
-    save_images(nasa_photo_urls, directory_path, 'nasa_')
-    save_images(spacex_photos, directory_path, 'spacex_')
-    save_images(nasa_epic_photos, directory_path, 'epic_')
-
-
-if __name__ == "__main__":
-    main()
-
+# def main():
+#     launch_id = '61e048ffbe8d8b66799018d1'
+#     nasa_photo_urls = get_nasa_photos_content(5)
+#     spacex_photos = get_spacex_photos_launch_by_id(launch_id)
+#     nasa_epic_photos = get_epic_photos()
+#     save_images(nasa_photo_urls, directory_path, 'nasa_')
+#     save_images(spacex_photos, directory_path, 'spacex_')
+#     save_images(nasa_epic_photos, directory_path, 'epic_')
+#
+#
+# if __name__ == "__main__":
+#     main()
 
