@@ -10,9 +10,10 @@ from environs import Env
 
 
 # url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
-directory_path = 'images'
+# directory_path = 'images'
 env = Env()
 env.read_env()
+directory_path = env.str('DIRECTORY_PATH', default='images')
 
 
 def save_images(contents, directory_path, name_photo):
@@ -49,61 +50,61 @@ def get_extension(url):
     return extension
 
 
-def get_nasa_photos_content(number_of_contents):
-    """Возвращает список фотографий в байтах с их разрешением полученных с nasa в кол-ве number_of_contents"""
-
-    url = 'https://api.nasa.gov/planetary/apod'
-    params = {
-        'api_key': env.str('NASA_TOKEN'),
-        'count': number_of_contents
-    }
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-    info_photos = response.json()
-    pprint(info_photos)
-    nasa_photos = []
-    for info_photo in info_photos:
-        nasa_photo_url = info_photo['hdurl']
-        response = requests.get(nasa_photo_url)
-        response.raise_for_status()
-        nasa_photo = []
-        nasa_photo.append(response.content)
-        nasa_photo.append(get_extension(nasa_photo_url))
-        nasa_photos.append(nasa_photo)
-    return nasa_photos
-
-
-def get_epic_photos_information():
-    url = 'https://api.nasa.gov/EPIC/api/natural/images'
-    params = {
-        'api_key': env.str('NASA_TOKEN'),
-    }
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-    epic_photos_information = response.json()[:3]
-    epic_photos_information[:5]
-    return epic_photos_information
+# def get_nasa_photos_content(number_of_contents):
+#     """Возвращает список фотографий в байтах с их разрешением полученных с nasa в кол-ве number_of_contents"""
+#
+#     url = 'https://api.nasa.gov/planetary/apod'
+#     params = {
+#         'api_key': env.str('NASA_TOKEN'),
+#         'count': number_of_contents
+#     }
+#     response = requests.get(url, params=params)
+#     response.raise_for_status()
+#     info_photos = response.json()
+#     pprint(info_photos)
+#     nasa_photos = []
+#     for info_photo in info_photos:
+#         nasa_photo_url = info_photo['hdurl']
+#         response = requests.get(nasa_photo_url)
+#         response.raise_for_status()
+#         nasa_photo = []
+#         nasa_photo.append(response.content)
+#         nasa_photo.append(get_extension(nasa_photo_url))
+#         nasa_photos.append(nasa_photo)
+#     return nasa_photos
 
 
-def get_epic_photos():
-    params = {
-        'api_key': env.str('NASA_TOKEN'),
-    }
-    epic_photos_information = get_epic_photos_information()
-    nasa_epic_photos = []
-    for i in epic_photos_information:
-        date = i['date']
-        d = datetime.fromisoformat(date)
-        photo_id = i['image']
-        e = f'https://api.nasa.gov/EPIC/archive/natural/{d.year}/{d.strftime("%m")}/{d.strftime("%d")}/png/{photo_id}.png'
-        response = requests.get(e, params=params)
-        response.raise_for_status()
-        epic_photo = response.content
-        photo_extension = []
-        photo_extension.append(epic_photo)
-        photo_extension.append(get_extension(e))
-        nasa_epic_photos.append(photo_extension)
-    return nasa_epic_photos
+# def get_epic_photos_information():
+#     url = 'https://api.nasa.gov/EPIC/api/natural/images'
+#     params = {
+#         'api_key': env.str('NASA_TOKEN'),
+#     }
+#     response = requests.get(url, params=params)
+#     response.raise_for_status()
+#     epic_photos_information = response.json()[:3]
+#     epic_photos_information[:5]
+#     return epic_photos_information
+#
+#
+# def get_epic_photos():
+#     params = {
+#         'api_key': env.str('NASA_TOKEN'),
+#     }
+#     epic_photos_information = get_epic_photos_information()
+#     nasa_epic_photos = []
+#     for i in epic_photos_information:
+#         date = i['date']
+#         d = datetime.fromisoformat(date)
+#         photo_id = i['image']
+#         e = f'https://api.nasa.gov/EPIC/archive/natural/{d.year}/{d.strftime("%m")}/{d.strftime("%d")}/png/{photo_id}.png'
+#         response = requests.get(e, params=params)
+#         response.raise_for_status()
+#         epic_photo = response.content
+#         photo_extension = []
+#         photo_extension.append(epic_photo)
+#         photo_extension.append(get_extension(e))
+#         nasa_epic_photos.append(photo_extension)
+#     return nasa_epic_photos
 
 
 # def main():

@@ -7,7 +7,7 @@ from main import get_extension, save_images, directory_path
 def create_parser():
     parser = argparse.ArgumentParser(
         description='Этот скрипт сохраняет фотографии в папку images, взятые с сайта Spacex по id полета. Если id не задан сохраняет фото с последнего полета')
-    parser.add_argument('--launch_id', help='Передаваемый id полета', default='latest')
+    parser.add_argument('-id', '--launch_id', help='Передаваемый id полета', default='latest')
     return parser
 
 
