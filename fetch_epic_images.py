@@ -1,10 +1,12 @@
 import argparse
-from datetime import datetime
-
 import requests
 
+from datetime import datetime
+from environs import Env
 from main import get_extension, save_images, directory_path
-from main import env
+
+env = Env()
+env.read_env()
 
 
 def create_parser():
