@@ -7,10 +7,12 @@ This is a publishing cosmos photo script.
 1. You set in the environment the path to the folder with the photo and the delay time for posting the photo.
 2. run `python publishing_photos.py`.
 3. The script will publish photos to the group with a given frequency through the telegram bot.
-4. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
-5. First module `python fetch_nasa_images.py -i 5`. Download 5 random photos from the NASA website
-6. Second module `fetch_epic_images.py -i 4`. Download 4 random epic photos from the NASA website
-7. Third module `fetch_spacex_images.py`. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
+4. If you want to post only one photo, then use the command: ` python telegram_bot.py -p nasa_4.jpg
+` If you do not specify an argument, then the photo will be random from the 'images' directory
+5. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
+6. First module `python fetch_nasa_images.py -i 5`. Download 5 random photos from the NASA website
+7. Second module `fetch_epic_images.py -i 4`. Download 4 random epic photos from the NASA website
+8. Third module `fetch_spacex_images.py`. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)

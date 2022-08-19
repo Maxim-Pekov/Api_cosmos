@@ -12,6 +12,8 @@ secs = env.int('SECONDS_DELAY', default=four_hours)
 count = 0
 
 
+
+
 while True:
     images = os.listdir("images")
     print(images)
