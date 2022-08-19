@@ -32,7 +32,6 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     launch_id = args.launch_id
-    # launch_id = '61e048ffbe8d8b66799018d1'
     spacex_photos = get_spacex_photos_launch_by_id(launch_id)
     save_images(spacex_photos, directory_path, 'spacex_')
 
