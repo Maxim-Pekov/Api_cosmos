@@ -11,7 +11,7 @@ def create_parser():
     return parser
 
 
-def get_spacex_photos_launch_by_id(flight_id):
+def get_spacex_photos(flight_id):
     """Возвращает список фотографий в байтах с их разрешением полученных с spacex используя flight_id"""
 
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
@@ -32,7 +32,10 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     launch_id = args.launch_id
-    spacex_photos = get_spacex_photos_launch_by_id(launch_id)
+    try:
+        spacex_photos = get_spacex_photos(launch_id)
+    except requests.exceptions.HTTPError as error:
+        print(f"Can't get data from server:\n{error}")
     save_images(spacex_photos, directory_path, 'spacex_')
 
 

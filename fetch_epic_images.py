@@ -24,7 +24,6 @@ def get_epic_photos_information(images_count):
     response = requests.get(url, params=params)
     response.raise_for_status()
     epic_photos_information = response.json()[:int(images_count)]
-
     return epic_photos_information
 
 
@@ -34,17 +33,17 @@ def get_epic_photos(images_count):
     }
     epic_photos_information = get_epic_photos_information(images_count)
     nasa_epic_photos = []
-    for i in epic_photos_information:
-        date = i['date']
-        d = datetime.fromisoformat(date)
-        photo_id = i['image']
-        e = f'https://api.nasa.gov/EPIC/archive/natural/{d.year}/{d.strftime("%m")}/{d.strftime("%d")}/png/{photo_id}.png'
-        response = requests.get(e, params=params)
+    for photo_information in epic_photos_information:
+        date_str = photo_information['date']
+        date = datetime.fromisoformat(date_str)
+        photo_id = photo_information['image']
+        epic_photo_url = f'https://api.nasa.gov/EPIC/archive/natural/{date.year}/{date.strftime("%m")}/{date.strftime("%d")}/png/{photo_id}.png'
+        response = requests.get(epic_photo_url, params=params)
         response.raise_for_status()
         epic_photo = response.content
         photo_extension = []
         photo_extension.append(epic_photo)
-        photo_extension.append(get_extension(e))
+        photo_extension.append(get_extension(epic_photo_url))
         nasa_epic_photos.append(photo_extension)
     return nasa_epic_photos
 
@@ -53,7 +52,10 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     images_count = args.images_count
-    epic_photos = get_epic_photos(images_count)
+    try:
+        epic_photos = get_epic_photos(images_count)
+    except requests.exceptions.HTTPError as error:
+        print(f"Can't get data from server:\n{error}")
     save_images(epic_photos, directory_path, 'epic_')
 
 

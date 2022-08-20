@@ -39,7 +39,10 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     images_count = args.images_count
-    nasa_photos = get_nasa_photos_content(images_count)
+    try:
+        nasa_photos = get_nasa_photos_content(images_count)
+    except requests.exceptions.HTTPError as error:
+        print(f"Can't get data from server:\n{error}")
     save_images(nasa_photos, directory_path, 'nasa_')
 
 
