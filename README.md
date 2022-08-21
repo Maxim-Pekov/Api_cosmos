@@ -5,14 +5,32 @@ This is a publishing cosmos photo script.
 ## How does he work:
 
 1. You set in the environment the path to the folder with the photo and the delay time for posting the photo.
-2. run `python publishing_photos.py`.
+2. run
+```python
+python publishing_photos.py
+```
 3. The script will publish photos to the group with a given frequency through the telegram bot.
-4. If you want to post only one photo, then use the command: ` python telegram_bot.py -p nasa_4.jpg
-` If you do not specify an argument, then the photo will be random from the 'images' directory
+4. If you want to post only one photo, then use the command: 
+```python
+python telegram_bot.py -p nasa_4.jpg
+```
+If you do not specify an argument, then the photo will be random from the 'images' directory
 5. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
-6. First module `python fetch_nasa_images.py -i 5`. Download 5 random photos from the NASA website
-7. Second module `fetch_epic_images.py -i 4`. Download 4 random epic photos from the NASA website
-8. Third module `fetch_spacex_images.py`. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
+6. Download 5 random photos from the NASA website
+```python
+python fetch_nasa_images.py -i 5`
+```
+
+7. Download 4 random epic photos from the NASA website
+```python
+python fetch_epic_images.py -i 4`
+```
+
+8. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
+
+```python
+python fetch_spacex_images.py
+```
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
@@ -23,33 +41,31 @@ This is a publishing cosmos photo script.
 Use these commands to start a project on your hardware.
 - [x] You can mark completed tasks with checkboxes 
 1. Install
-
-- [ ]    `git clone https://github.com/Maxim-Pekov/Api_cosmos`
-
-- [ ]    `python -m venv venv`
+```python
+git clone https://github.com/Maxim-Pekov/Api_cosmos
+python -m venv venv
+```
 2. Activate venv    
-- [ ] Windows  `.\venv\Scripts\activate`
-- [ ] Linux, Mac  `source ./venv/bin/activate`
+```
+.\venv\Scripts\activate         #windows
+source ./venv/bin/activate      #Linux, Mac  
+```
 3. Go to the `./Api_cosmos` directory
 4. Install requirements
-
-- [ ]    `pip install -r requirements.txt`
-
+```python
+pip install -r requirements.txt
+```
 5. Create `.env` directory
 6. In the directory `.env` write the following lines:
-
-- images - the name of the directory where the photos will be stored.
-- [ ]    `DIRECTORY_PATH = 'images'`
-
-- 123456789qwerty - token for access to Telegram API.
-- [ ]    `TOKEN = '123456789qwerty'`
-
-- 3600 - number of seconds to delay sending a photo to a telegram group.
-- [ ]    `SECONDS_DELAY = 3600'`
-
+```
+DIRECTORY_PATH = 'images'   # the name of the directory where the photos will be stored.
+TOKEN = '123456789qwerty'
+`SECONDS_DELAY = 3600'      # number of seconds to delay sending a photo to a telegram group.
+```
 5. Run this command
-
-- [ ]   `python publishing_photos.py`
+```python
+python publishing_photos.py
+```
 ---
 ## About me
 [<img align="left" alt="maxim-pekov | LinkedIn" width="30px" src="https://img.icons8.com/color/48/000000/linkedin-circled--v3.png" />https://www.linkedin.com/in/maxim-pekov/](https://www.linkedin.com/in/maxim-pekov/)
