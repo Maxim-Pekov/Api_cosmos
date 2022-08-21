@@ -46,7 +46,7 @@ git clone https://github.com/Maxim-Pekov/Api_cosmos
 python -m venv venv
 ```
 2. Activate venv    
-```
+```python
 .\venv\Scripts\activate         #windows
 source ./venv/bin/activate      #Linux, Mac  
 ```
@@ -57,10 +57,10 @@ pip install -r requirements.txt
 ```
 5. Create `.env` directory
 6. In the directory `.env` write the following lines:
-```
+```python
 DIRECTORY_PATH = 'images'   # the name of the directory where the photos will be stored.
 TOKEN = '123456789qwerty'
-`SECONDS_DELAY = 3600'      # number of seconds to delay sending a photo to a telegram group.
+SECONDS_DELAY = 3600        # number of seconds to delay sending a photo to a telegram group.
 ```
 5. Run this command
 ```python
