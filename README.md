@@ -18,18 +18,18 @@ If you do not specify an argument, then the photo will be random from the 'image
 5. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
 6. Download 5 random photos from the NASA website
 ```python
-python fetch_nasa_images.py -i 5`
+python fetch_nasa_images.py -i 5
 ```
 
 7. Download 4 random epic photos from the NASA website
 ```python
-python fetch_epic_images.py -i 4`
+python fetch_epic_images.py -i 4
 ```
 
 8. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
 
 ```python
-python fetch_spacex_images.py
+python fetch_spacex_images.py -h
 ```
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
