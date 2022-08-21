@@ -52,10 +52,7 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     images_count = args.images_count
-    try:
-        epic_photos = get_epic_photos(images_count)
-    except requests.exceptions.HTTPError as error:
-        print(f"Can't get data from server:\n{error}")
+    epic_photos = get_epic_photos(images_count)
     save_images(epic_photos, directory_path, 'epic_')
 
 

@@ -32,10 +32,7 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     launch_id = args.launch_id
-    try:
-        spacex_photos = get_spacex_photos(launch_id)
-    except requests.exceptions.HTTPError as error:
-        print(f"Can't get data from server:\n{error}")
+    spacex_photos = get_spacex_photos(launch_id)
     save_images(spacex_photos, directory_path, 'spacex_')
 
 
