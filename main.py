@@ -16,7 +16,6 @@ def save_images(contents, directory_path, name_photo):
     pathlib.Path(directory_path).mkdir(parents=True, exist_ok=True)
     for number_url, content in enumerate(contents):
         image, extension = content
-        pathlib.Path(directory_path).mkdir(parents=True, exist_ok=True)
         with open(f'{directory_path}/{name_photo}{number_url}{extension}', 'wb') as file:
             file.write(image)
 
