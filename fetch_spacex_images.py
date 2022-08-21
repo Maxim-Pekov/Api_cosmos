@@ -1,4 +1,6 @@
 import argparse
+from pprint import pprint
+
 import requests
 
 from main import get_extension, save_images, directory_path
@@ -16,7 +18,7 @@ def get_spacex_photos(flight_id):
 
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
     response.raise_for_status()
-    spacex_photo_urls = response.json()['links']['flickr']['original']
+    spacex_photo_urls = response.json().get('links').get('flickr').get('original')
     spacex_photos = []
     for spacex_photo_url in spacex_photo_urls:
         response = requests.get(spacex_photo_url)

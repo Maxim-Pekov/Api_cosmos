@@ -25,7 +25,7 @@ def get_nasa_photos_content(number_of_contents):
     info_photos = response.json()
     nasa_photos = []
     for info_photo in info_photos:
-        nasa_photo_url = info_photo['hdurl']
+        nasa_photo_url = info_photo.get('hdurl')
         response = requests.get(nasa_photo_url)
         response.raise_for_status()
         nasa_photo = []
