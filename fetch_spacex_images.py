@@ -1,6 +1,4 @@
 import argparse
-from pprint import pprint
-
 import requests
 
 from main import get_extension, save_images, directory_path

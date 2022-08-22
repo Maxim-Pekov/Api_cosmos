@@ -17,10 +17,10 @@ def create_parser():
     return parser
 
 
-def get_epic_photos_information(images_count):
+def get_epic_photos_information(images_count, nasa_token):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     params = {
-        'api_key': env.str('NASA_TOKEN'),
+        'api_key': nasa_token,
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -28,11 +28,11 @@ def get_epic_photos_information(images_count):
     return epic_photos_information
 
 
-def get_epic_photos(images_count):
+def get_epic_photos(images_count, nasa_token):
     params = {
-        'api_key': env.str('NASA_TOKEN'),
+        'api_key': nasa_token,
     }
-    epic_photos_information = get_epic_photos_information(images_count)
+    epic_photos_information = get_epic_photos_information(images_count, nasa_token)
     nasa_epic_photos = []
     for photo_information in epic_photos_information:
         date_str = photo_information.get('date')
@@ -47,10 +47,11 @@ def get_epic_photos(images_count):
 
 
 def main():
+    nasa_token = env.str('NASA_TOKEN')
     parser = create_parser()
     args = parser.parse_args()
     images_count = args.images_count
-    epic_photos = get_epic_photos(images_count)
+    epic_photos = get_epic_photos(images_count, nasa_token)
     save_images(epic_photos, directory_path, 'epic_')
 
 
