@@ -1,7 +1,7 @@
 import argparse
 import requests
 
-from main import get_extension, save_images, directory_path
+from general_functions import get_extension, save_images, directory_path
 
 
 def create_parser():

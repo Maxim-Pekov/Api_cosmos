@@ -1,14 +1,14 @@
 import argparse
 import requests
 
-from main import get_extension, save_images, directory_path
-from main import env
+from general_functions import get_extension, save_images, directory_path
+from general_functions import env
 
 
 def create_parser():
     parser = argparse.ArgumentParser(
         description='Этот скрипт сохраняет фотографии в папку images, взятые с сайта Nasa. Если кол-во фото не задано, сохраняет одну фотографию')
-    parser.add_argument('-i', '--images_count', help='кол-во скачиваемых фото', default=1)
+    parser.add_argument('-i', '--images_count', help='кол-во скачиваемых фото', default=1, type=int)
     return parser
 
 

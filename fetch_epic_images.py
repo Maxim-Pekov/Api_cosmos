@@ -3,7 +3,7 @@ import requests
 
 from datetime import datetime
 from environs import Env
-from main import get_extension, save_images, directory_path
+from general_functions import get_extension, save_images, directory_path
 
 
 env = Env()
