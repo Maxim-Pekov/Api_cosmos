@@ -28,9 +28,7 @@ def get_nasa_photos_content(number_of_contents):
         nasa_photo_url = info_photo.get('hdurl')
         response = requests.get(nasa_photo_url)
         response.raise_for_status()
-        nasa_photo = []
-        nasa_photo.append(response.content)
-        nasa_photo.append(get_extension(nasa_photo_url))
+        nasa_photo = response.content, get_extension(nasa_photo_url)
         nasa_photos.append(nasa_photo)
     return nasa_photos
 

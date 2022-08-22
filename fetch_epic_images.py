@@ -41,10 +41,7 @@ def get_epic_photos(images_count):
         epic_photo_url = f'https://api.nasa.gov/EPIC/archive/natural/{date.year}/{date.strftime("%m")}/{date.strftime("%d")}/png/{photo_id}.png'
         response = requests.get(epic_photo_url, params=params)
         response.raise_for_status()
-        epic_photo = response.content
-        photo_extension = []
-        photo_extension.append(epic_photo)
-        photo_extension.append(get_extension(epic_photo_url))
+        photo_extension = response.content, get_extension(epic_photo_url)
         nasa_epic_photos.append(photo_extension)
     return nasa_epic_photos
 

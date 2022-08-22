@@ -23,9 +23,7 @@ def get_spacex_photos(flight_id):
     for spacex_photo_url in spacex_photo_urls:
         response = requests.get(spacex_photo_url)
         response.raise_for_status()
-        spacex_photo = []
-        spacex_photo.append(response.content)
-        spacex_photo.append(get_extension(spacex_photo_url))
+        spacex_photo = response.content, get_extension(spacex_photo_url)
         spacex_photos.append(spacex_photo)
     return spacex_photos
 
