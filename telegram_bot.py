@@ -11,7 +11,7 @@ env = Env()
 env.read_env()
 telegram_token = env.str('TELEGRAM_TOKEN')
 telegram_chat_id = env.int('TELEGRAM_CHAT_ID')
-
+images_directory = os.listdir(env.str('DIRECTORY_PATH'))
 
 def create_parser():
     parser = argparse.ArgumentParser(
@@ -23,14 +23,14 @@ def create_parser():
 def publish_photo(path):
     bot = telegram.Bot(token=telegram_token)
     image_path = Path() / 'images' / path
-    bot.send_document(chat_id=-telegram_chat_id, document=open(image_path, 'rb'))
+    with open(image_path, 'rb') as image_path:
+        bot.send_document(chat_id=-telegram_chat_id, document=image_path)
 
 
 parser = create_parser()
 args = parser.parse_args()
 photo_name = args.photo_name
-photos = os.listdir(env.str('DIRECTORY_PATH'))
-random_photo = random.choice(photos)
+random_photo = random.choice(images_directory)
 publish_photo(photo_name) if photo_name else publish_photo(random_photo)
 
 
