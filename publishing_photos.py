@@ -12,7 +12,6 @@ env = Env()
 env.read_env()
 four_hours = 14400
 sending_delay_time = env.int('SECONDS_DELAY', default=four_hours)
-count = 0
 attempt = 0
 reconnection_time = 60
 

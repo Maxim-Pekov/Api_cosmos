@@ -10,8 +10,8 @@ from pathlib import Path
 env = Env()
 env.read_env()
 telegram_token = env.str('TELEGRAM_TOKEN')
-telegram_chat_id = int(env.int('TELEGRAM_CHAT_ID', default=1001626507075))
-images_directory = os.listdir(env.str('DIRECTORY_PATH'))
+telegram_chat_id = int(env.int('TELEGRAM_CHAT_ID'))
+images_directory = env.str('DIRECTORY_PATH', default='images')
 
 def create_parser():
     parser = argparse.ArgumentParser(
@@ -30,7 +30,7 @@ def publish_photo(path):
 parser = create_parser()
 args = parser.parse_args()
 photo_name = args.photo_name
-random_photo = random.choice(images_directory)
+random_photo = random.choice(os.listdir(images_directory))
 publish_photo(photo_name) if photo_name else publish_photo(random_photo)
 
 
