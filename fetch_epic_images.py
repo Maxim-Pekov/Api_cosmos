@@ -13,7 +13,7 @@ env.read_env()
 def create_parser():
     parser = argparse.ArgumentParser(
         description='Этот скрипт сохраняет фотографии в папку epic images, взятые с сайта Nasa. Если кол-во фото не задано, сохраняет одну фотографию')
-    parser.add_argument('-i', '--images_count', help='кол-во скачиваемых фото', default=1)
+    parser.add_argument('-i', '--images_count', help='кол-во скачиваемых фото', default=1, type=int)
     return parser
 
 
@@ -24,7 +24,7 @@ def get_epic_photos_information(images_count, nasa_token):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
-    epic_photos_information = response.json()[:int(images_count)]
+    epic_photos_information = response.json()[:images_count]
     return epic_photos_information
 
 
