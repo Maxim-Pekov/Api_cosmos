@@ -11,7 +11,7 @@ env = Env()
 env.read_env()
 telegram_token = env.str('TELEGRAM_TOKEN')
 telegram_chat_id = int(env.int('TELEGRAM_CHAT_ID', default=1001626507075))
-images_directory = os.listdir(env.str('DIRECTORY_PATH'), default='images')
+images_directory = os.listdir(env.str('DIRECTORY_PATH'))
 
 def create_parser():
     parser = argparse.ArgumentParser(
