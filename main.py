@@ -3,6 +3,7 @@ import pathlib
 from os.path import splitext
 from urllib.parse import urlparse
 from environs import Env
+from pathlib import Path
 
 
 env = Env()
@@ -16,7 +17,8 @@ def save_images(contents, directory_path, name_photo):
     pathlib.Path(directory_path).mkdir(parents=True, exist_ok=True)
     for number_url, content in enumerate(contents):
         image, extension = content
-        with open(f'{directory_path}/{name_photo}{number_url}{extension}', 'wb') as file:
+        outpath = Path() / directory_path / f'{name_photo}{number_url}{extension}'
+        with open(outpath, 'wb') as file:
             file.write(image)
 
 

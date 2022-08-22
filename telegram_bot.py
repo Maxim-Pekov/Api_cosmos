@@ -4,6 +4,7 @@ import random
 
 import telegram
 from environs import Env
+from pathlib import Path
 
 
 env = Env()
@@ -21,7 +22,8 @@ def create_parser():
 
 def publish_photo(path):
     bot = telegram.Bot(token=token)
-    bot.send_document(chat_id=-chat_id, document=open(f'images/{path}', 'rb'))
+    image_path = Path() / 'images' / path
+    bot.send_document(chat_id=-chat_id, document=open(image_path, 'rb'))
 
 
 parser = create_parser()
