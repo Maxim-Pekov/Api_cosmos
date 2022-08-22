@@ -9,8 +9,8 @@ from pathlib import Path
 
 env = Env()
 env.read_env()
-token = env.str('TOKEN')
-chat_id = env.int('CHAT_ID')
+telegram_token = env.str('TELEGRAM_TOKEN')
+telegram_chat_id = env.int('TELEGRAM_CHAT_ID')
 
 
 def create_parser():
@@ -21,9 +21,9 @@ def create_parser():
 
 
 def publish_photo(path):
-    bot = telegram.Bot(token=token)
+    bot = telegram.Bot(token=telegram_token)
     image_path = Path() / 'images' / path
-    bot.send_document(chat_id=-chat_id, document=open(image_path, 'rb'))
+    bot.send_document(chat_id=-telegram_chat_id, document=open(image_path, 'rb'))
 
 
 parser = create_parser()
