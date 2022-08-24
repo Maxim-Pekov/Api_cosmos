@@ -62,6 +62,8 @@ DIRECTORY_PATH = 'images'   # the name of the directory where the photos will be
 TELEGRAM_TOKEN = '123456789qwerty'
 SECONDS_DELAY = 3600        # number of seconds to delay sending a photo to a telegram group.
 TELEGRAM_CHAT_ID = 123456   # your group number, you can get it by forwarding a message from the group to Get My Id (bot)
+NASA_TOKEN = 'ToKeN'        # Need to run (python fetch_nasa_images.py --images_count 5), you can get it in NASA Api 
+
 ```
 5. Run this command
 ```python

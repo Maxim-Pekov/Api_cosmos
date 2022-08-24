@@ -22,7 +22,7 @@ while True:
     for image in images:
         try:
             publish_photo(image)
-        except (requests.ConnectionError, requests.HTTPError, requests.ConnectTimeout, requests.Timeout, telegram.error.NetworkError):
+        except telegram.error.NetworkError:
             attempt += 1
             if attempt == 1:
                 continue
