@@ -15,6 +15,7 @@ sending_delay_time = env.int('SECONDS_DELAY', default=four_hours)
 attempt = 0
 reconnection_time = 60
 
+
 while True:
     images = os.listdir("images")
     random.shuffle(images)

@@ -13,6 +13,7 @@ telegram_token = env.str('TELEGRAM_TOKEN')
 telegram_chat_id = int(env.int('TELEGRAM_CHAT_ID'))
 images_directory = env.str('DIRECTORY_PATH', default='images')
 
+
 def create_parser():
     parser = argparse.ArgumentParser(
         description='публикует фотографии в группу телеграмм')
@@ -27,12 +28,15 @@ def publish_photo(path):
         bot.send_document(chat_id=telegram_chat_id, document=img_path)
 
 
-parser = create_parser()
-args = parser.parse_args()
-photo_name = args.photo_name
-random_photo = random.choice(os.listdir(images_directory))
-publish_photo(photo_name) if photo_name else publish_photo(random_photo)
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+    photo_name = args.photo_name
+    random_photo = random.choice(os.listdir(images_directory))
+    publish_photo(photo_name) if photo_name else publish_photo(random_photo)
 
 
+if __name__ == '__main__':
+    main()
 
 

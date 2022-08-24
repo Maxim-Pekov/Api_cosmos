@@ -6,10 +6,6 @@ from environs import Env
 from general_functions import get_extension, save_images, directory_path
 
 
-env = Env()
-env.read_env()
-
-
 def create_parser():
     parser = argparse.ArgumentParser(
         description='Этот скрипт сохраняет фотографии в папку epic images, взятые с сайта Nasa. Если кол-во фото не задано, сохраняет одну фотографию')
@@ -48,6 +44,8 @@ def get_epic_photos(images_count, nasa_token):
 
 
 def main():
+    env = Env()
+    env.read_env()
     nasa_token = env.str('NASA_TOKEN')
     parser = create_parser()
     args = parser.parse_args()
