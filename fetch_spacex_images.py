@@ -16,13 +16,16 @@ def get_spacex_photos(flight_id):
 
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{flight_id}')
     response.raise_for_status()
-    spacex_photo_urls = response.json().get('links').get('flickr').get('original')
+    spacex_photo_links = response.json().get('links')
+    spacex_photo_flickr = spacex_photo_links.get('flickr')
+    spacex_photo_urls = spacex_photo_flickr.get('original')
     spacex_photos = []
-    for spacex_photo_url in spacex_photo_urls:
-        response = requests.get(spacex_photo_url)
-        response.raise_for_status()
-        spacex_photo = response.content, get_extension(spacex_photo_url)
-        spacex_photos.append(spacex_photo)
+    if spacex_photo_links and spacex_photo_flickr and spacex_photo_urls:
+        for spacex_photo_url in spacex_photo_urls:
+            response = requests.get(spacex_photo_url)
+            response.raise_for_status()
+            spacex_photo = response.content, get_extension(spacex_photo_url)
+            spacex_photos.append(spacex_photo)
     return spacex_photos
 
 

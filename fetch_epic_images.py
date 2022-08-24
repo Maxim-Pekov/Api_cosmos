@@ -33,16 +33,18 @@ def get_epic_photos(images_count, nasa_token):
         'api_key': nasa_token,
     }
     epic_photos_information = get_epic_photos_information(images_count, nasa_token)
+    pprint(epic_photos_information)
     nasa_epic_photos = []
     for photo_information in epic_photos_information:
         date_str = photo_information.get('date')
-        date = datetime.fromisoformat(date_str)
         photo_id = photo_information.get('image')
-        epic_photo_url = f'https://api.nasa.gov/EPIC/archive/natural/{date.year}/{date.strftime("%m")}/{date.strftime("%d")}/png/{photo_id}.png'
-        response = requests.get(epic_photo_url, params=params)
-        response.raise_for_status()
-        photo_extension = response.content, get_extension(epic_photo_url)
-        nasa_epic_photos.append(photo_extension)
+        if date_str and photo_id:
+            date = datetime.fromisoformat(date_str)
+            epic_photo_url = f'https://api.nasa.gov/EPIC/archive/natural/{date.year}/{date.strftime("%m")}/{date.strftime("%d")}/png/{photo_id}.png'
+            response = requests.get(epic_photo_url, params=params)
+            response.raise_for_status()
+            photo_extension = response.content, get_extension(epic_photo_url)
+            nasa_epic_photos.append(photo_extension)
     return nasa_epic_photos
 
 
