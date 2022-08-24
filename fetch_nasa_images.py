@@ -28,12 +28,12 @@ def get_nasa_photos_content(number_of_contents, nasa_token):
         nasa_photo_url = info_photo.get('hdurl')
         if nasa_photo_url:
             response = requests.get(nasa_photo_url)
-        response.raise_for_status()
-        extension = get_extension(nasa_photo_url)
-        first_symbol, *__ = extension
-        if first_symbol == '.':
-            nasa_photo = response.content, extension
-        nasa_photos.append(nasa_photo)
+            response.raise_for_status()
+            extension = get_extension(nasa_photo_url)
+            first_symbol, *__ = extension
+            if first_symbol == '.':
+                nasa_photo = response.content, extension
+                nasa_photos.append(nasa_photo)
     return nasa_photos
 
 
