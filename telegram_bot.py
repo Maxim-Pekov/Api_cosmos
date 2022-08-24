@@ -22,7 +22,7 @@ def create_parser():
 
 def publish_photo(path):
     bot = telegram.Bot(token=telegram_token)
-    image_path = Path() / 'images' / path
+    image_path = Path() / images_directory / path
     with open(image_path, 'rb') as img_path:
         bot.send_document(chat_id=telegram_chat_id, document=img_path)
 
