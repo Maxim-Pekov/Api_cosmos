@@ -1,7 +1,6 @@
 import os
 import time
 import random
-import requests
 import telegram
 
 from environs import Env
