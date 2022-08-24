@@ -26,8 +26,7 @@ while True:
             attempt += 1
             if attempt == 1:
                 continue
-            else:
-                time.sleep(reconnection_time)
-                continue
+            time.sleep(reconnection_time)
+            continue
         time.sleep(sending_delay_time)
 
