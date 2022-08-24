@@ -30,8 +30,7 @@ def get_nasa_photos_content(number_of_contents, nasa_token):
             response = requests.get(nasa_photo_url)
             response.raise_for_status()
             extension = get_extension(nasa_photo_url)
-            first_symbol, *__ = extension
-            if first_symbol == '.':
+            if extension.startswith('.'):
                 nasa_photo = response.content, extension
                 nasa_photos.append(nasa_photo)
     return nasa_photos

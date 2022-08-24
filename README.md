@@ -59,8 +59,9 @@ pip install -r requirements.txt
 6. In the directory `.env` write the following lines:
 ```python
 DIRECTORY_PATH = 'images'   # the name of the directory where the photos will be stored.
-TOKEN = '123456789qwerty'
+TELEGRAM_TOKEN = '123456789qwerty'
 SECONDS_DELAY = 3600        # number of seconds to delay sending a photo to a telegram group.
+TELEGRAM_CHAT_ID = 123456   # your group number, you can get it by forwarding a message from the group to Get My Id (bot)
 ```
 5. Run this command
 ```python
